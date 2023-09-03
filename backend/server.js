@@ -1,11 +1,16 @@
 import express from 'express';
 import dotenv, { config } from 'dotenv';
 import products from './data/products.js';
+import connectDB from './config/db.js';
+
+
 
 
 dotenv.config();
 const port = process.env.PORT || 5000;
 const app = express();
+
+connectDB();   // Connect to MongoDB ... connect afer dotenv.config() to get the value of process.env.MONGO_URI
 
 app.get('/', (req, res) => {
     res.send('Server is ready');
