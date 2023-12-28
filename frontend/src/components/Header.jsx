@@ -5,8 +5,9 @@ import { useLogoutMutation } from '../slices/usersApiSlice'
 import {logout } from '../slices/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
-import logo from '../assets/logo.png'
-import shopping from '../assets/shopping.png'
+import finance from '../assets/finance.png'
+import avatar from '../assets/avatar.png'
+import s from '../assets/s.png'
 
 
 const Header = () => {
@@ -42,7 +43,7 @@ const Header = () => {
       <Container>
         <LinkContainer  to='/' >   
         <Navbar.Brand>
-          <img src={shopping} alt="StellarCart" width="50px" height="50px"/>
+          <img src={s} alt="StellarCart" width="50px" height="50px"/>
           StellarCart
         </Navbar.Brand>
         </LinkContainer>
@@ -52,7 +53,7 @@ const Header = () => {
             <Nav className="ms-auto">
             <LinkContainer to='/cart'>
             <Nav.Link>
-              <FaShoppingCart/> Cart
+            <img src={finance} alt="StellarCart" width="25px" height="25px"/> Bag
               { cartItems.length > 0 && (
                 <Badge pill bg='success' style={{marginLeft : '5px'}}>
                   {cartItems.reduce((a, c) => a + c.qty, 0)}
@@ -62,7 +63,7 @@ const Header = () => {
               </Nav.Link>
             </LinkContainer>  
             {userInfo ? (
-              <NavDropdown title={userInfo.name} id='username'>
+              <NavDropdown title={<span><img src={avatar} alt="User Icon" width="25px" height="25px" /> {userInfo.name}</span>} id='username'>
                 <LinkContainer to='/profile'>
                   <NavDropdown.Item>Profile</NavDropdown.Item>
                 </LinkContainer>
