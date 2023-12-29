@@ -25,9 +25,6 @@ app.use(cookieParser());
 
 connectDB();   // Connect to MongoDB ... connect afer dotenv.config() to get the value of process.env.MONGO_URI
 
-app.get('/', (req, res) => {
-    res.send('Server is ready');
-});
 
 app.use('/api/products', productRoutes);
 app.use('/api/users', userRoutes);
@@ -40,12 +37,11 @@ app.get('/api/config/paypal' , (req , res) => {
 if(process.env.NODE_ENV === 'production'){
     // Set static folder
     const __dirname = path.resolve();
-    app.use(express.static(path.join(__dirname , 'frontend' , 'build')));
+    app.use(express.static(path.join(__dirname, '/frontend/build')));
 
-    // Any route that is not api route will be redirected to index.html
-    app.get('*' , (req , res) => {  // * means any route
-        res.sendFile(path.resolve(__dirname , 'frontend' , 'build' , 'index.html'));
-    });
+    app.get('*', (req, res) =>
+      res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    );
 }else{
     app.get('/' , (req , res) => {
         res.send('API is running');
