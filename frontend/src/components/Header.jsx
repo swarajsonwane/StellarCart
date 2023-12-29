@@ -5,6 +5,7 @@ import { useLogoutMutation } from '../slices/usersApiSlice'
 import {logout } from '../slices/authSlice'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
+import SearchBox from './SearchBox'
 import finance from '../assets/finance.png'
 import avatar from '../assets/avatar.png'
 import s from '../assets/s.png'
@@ -51,6 +52,7 @@ const Header = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="ms-auto">
+              <SearchBox/>
             <LinkContainer to='/cart'>
             <Nav.Link>
             <img src={finance} alt="StellarCart" width="25px" height="25px"/> Bag
