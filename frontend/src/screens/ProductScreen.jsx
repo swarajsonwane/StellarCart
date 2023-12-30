@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom'
 import {Form, Row, Col, Image, ListGroup, Card, Button} from 'react-bootstrap'
 import Rating from '../components/Rating'
 import Loader from "../components/Loader"
+import Meta from "../components/Meta"
 import Message from "../components/Message"
 import {useGetProductDetailsQuery} from '../slices/productApiSlice'
 import { addToCart } from "../slices/cartSlice"
@@ -45,6 +46,7 @@ const ProductScreen = () => {
      </Link>
         {isloading ? <Loader/> : error ? <Message variant='danger'>{error.error || error?.data?.message}</Message> : (
             <>
+            <Meta title={product.name}/>
              <Row>
             <Col md={5}>
                 <Image src={product.image} alt={product.name} fluid/>

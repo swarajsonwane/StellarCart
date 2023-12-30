@@ -5,7 +5,6 @@ import {Row , Col, ListGroup, Image, Form, Button, Card} from 'react-bootstrap';
 import Message from '../components/Message';
 import Loader from '../components/Loader';
 import { useGetOrderDetailsQuery , usePayOrderMutation, useGetPaypalClientIdQuery} from '../slices/orderApiSlice';
-import { toast } from 'react-toastify';
 import { useEffect } from 'react';
 
 const OrderScreen = () => {
@@ -33,19 +32,12 @@ const OrderScreen = () => {
                     currency: 'INR',
                 }});
                 paypalDispatch({type: 'setLoadingStatus', value: 'pending'});
-                await paypalDispatch({type: 'setLoadingStatus', value: 'resolved'});
             }
             if(order && !order.isPaid){
                 if(!window.paypal){
                     loadingPaypalScript();
                 }
-                else{
-                    paypalDispatch({type: 'resetOptions', value: {
-                        'client-id': paypal.clientId,
-                        currency: 'INR',
-                    }});
-                    paypalDispatch({type: 'setLoadingStatus', value: 'resolved'});
-                }
+                
             }
         }
     },[paypal, paypalDispatch, order, errorPayPal, loadingPaypal]);
